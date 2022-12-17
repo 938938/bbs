@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({ category }) => {
   return (
     <form>
       <div>
@@ -11,10 +11,9 @@ const Search = () => {
       </div>
       <div>
         <select>
-          <option>전체 카테고리</option>
-          <option>JAVA</option>
-          <option>Javascript</option>
-          <option>Database</option>
+          {category.map((ele, index) => (
+            <option key={index}>{ele}</option>
+          ))}
         </select>
         <input type='text' />
         <button>검색</button>

@@ -1,38 +1,179 @@
 .App {
-  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  width: 90vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Main {
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Main form {
+  width: 80vw;
+  margin: 10px auto;
+  height: 50px;
+  box-sizing: border-box;
+  border: 1px solid black;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.Main form * {
+  margin: 5px;
+}
+
+.Main form button {
+  width: 80px;
+  height: 20px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  background-color: gray;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Main .bbs {
+  margin: 30px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
 }
+
+thead {
+  border-top: 1px solid black;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  height: 20px;
+}
+
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  width: 50%;
+}
+
+thead th:nth-child(3) {
+  width: 10%;
+}
+
+thead th:nth-child(4) {
+  width: 10%;
+}
+thead th:nth-child(5) {
+  width: 10%;
+}
+thead th:nth-child(6) {
+  width: 10%;
+}
+
+td:nth-child(2) {
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+}
+
+table .file {
+  width: 15px;
+  margin: 0 5px;
+}
+
+nav {
+  width: 30vw;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+}
+
+nav button {
+  margin: 0 5px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.newBtn {
+  width: 80px;
+  height: 30px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  background-color: gray;
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.Post {
+  position: absolute;
+  width: 90vw;
+}
+
+.Post .postHead {
+  border-bottom: 1px solid black;
+}
+.Post span {
+  display: block;
+}
+.Post .date,
+.Post .view {
+  text-align: right;
+  font-size: 13px;
+}
+.Post .text {
+  width: 90vw;
+  border: 1px solid black;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.Post .file {
+  margin: 10px 0;
+  display: flex;
+  cursor: pointer;
+}
+.Post .file span {
+  padding-left: 10px;
+  text-decoration: underline;
+}
+.Post .commentBox {
+  width: 90vw;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: rgb(241, 241, 241);
+  margin-bottom: 10px;
+}
+.Post .comment {
+  border-bottom: 1px dashed black;
+  padding: 5px 0;
+  margin: 5px;
+  font-size: 14px;
+}
+.Post .commentBox form {
+  width: 90vw;
+}
+.Post .commentBox form input {
+  width: 85vw;
+  height: 50px;
+  padding: 0;
+}
+.Post .commentBox form button {
+  width: 3vw;
+  height: 50px;
+  margin-left: 5px;
+}
+
