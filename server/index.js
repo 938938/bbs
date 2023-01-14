@@ -13,11 +13,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.get('/category', (req, res) => {
-  const category = ['전체 카테고리', 'JAVA', 'Javascript', 'Database'];
-  res.send(category);
-});
-
 // app.listen(port, () => {
 //   console.log(`Example app listening at http://localhost:${port}`);
 // });
@@ -32,12 +27,25 @@ const db = mysql.createConnection({
   database: 'bbs',
 });
 
-db.connect();
-
 // 잘 연동 되었는지 확인
 db.connect(function (err) {
   if (err) throw err;
   console.log('DB is Connected!');
+});
+
+categoryQuery = 'SELECT * FROM category';
+let category = [];
+
+db.query(categoryQuery, function (err, results, fields) {
+  // testQuery 실행
+  if (err) {
+    console.log(err);
+  }
+  category = results;
+});
+
+app.get('/category', (req, res) => {
+  res.send(category);
 });
 
 app.get('*', (req, res) => {
