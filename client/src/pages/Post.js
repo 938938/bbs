@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import dummy from '../MOCK_DATA.json';
 import { AiOutlineDownload } from 'react-icons/ai';
+import axios from 'axios';
 
 const Post = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState();
+
+  const getData = async () => {
+    await axios
+      .get(`http://localhost:4000/api/post/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
-    if (dummy.length >= 1) {
-      const targetData = dummy.find((it) => parseInt(it.id) === parseInt(id));
-      if (targetData) {
-        setData(targetData);
-      } else {
-        navigate('/', { replace: true });
-      }
-    }
-  }, [id, dummy]);
+    getData();
+  }, []);
+
+  const goBack = () => {
+    navigate('/');
+  };
+
+  const goEdit = () => {
+    navigate(`/edit/${id}`, {
+      state: { data: data, type: 'edit' },
+    });
+  };
+
   return (
     <div className='Post'>
       <h2>게시판 - 보기</h2>
@@ -25,14 +40,15 @@ const Post = () => {
           <div className='postHead'>
             <span>{data.writer}</span>
             <span className='date'>
-              등록일시 {data.create} 수정일시 {data.edit}
+              등록일시 {new Date(data.created).toLocaleDateString()} 수정일시{' '}
+              {data.edit ? new Date(data.edit).toLocaleDateString() : '-'}
             </span>
             <h3>
-              [{data.category}] {data.title}
+              [{data.category_name}] {data.title}
             </h3>
             <span className='view'>조회수 : {data.view}</span>
           </div>
-          <div className='text'>{data.text}</div>
+          <div className='text'>{data.contents}</div>
           {data.file ? (
             <div className='file'>
               <AiOutlineDownload /> <span>{data.file}</span>
@@ -55,8 +71,8 @@ const Post = () => {
             </form>
           </div>
           <div>
-            <button>목록</button>
-            <button>수정</button>
+            <button onClick={goBack}>목록</button>
+            <button onClick={goEdit}>수정</button>
             <button>삭제</button>
           </div>
         </>

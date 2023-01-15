@@ -11,8 +11,8 @@ const Search = ({ category }) => {
       </div>
       <div>
         <select>
-          {category.map((ele, index) => (
-            <option key={index}>{ele}</option>
+          {category.map((ele) => (
+            <option key={ele.id}>{ele.category_name}</option>
           ))}
         </select>
         <input type='text' />
@@ -23,5 +23,3 @@ const Search = ({ category }) => {
 };
 
 export default Search;
-
-
