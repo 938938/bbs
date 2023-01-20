@@ -16,7 +16,7 @@ const Write = () => {
   /**
    * 같은 데이터를 두번 불러와도 되는지
    * ex) 카테고리 데이터를 메인과 포스팅 양 쪽에서 사용.
-   * App.js 에서 불러와서 Context를 사용?
+   * App.js 에서 불러와서 Context를 사용? ㅇㅇ<<<이게맞음
    */
 
   const getCategory = async () => {

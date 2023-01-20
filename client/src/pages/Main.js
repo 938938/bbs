@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Search from '../util/Search';
-import Board from '../util/Board';
+import Search from '../components/Search';
+import Board from '../components/Board';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 

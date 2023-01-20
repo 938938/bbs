@@ -5,6 +5,7 @@ import Post from './pages/Post';
 import Write from './pages/Write';
 
 function App() {
+// 여기서 카테고리데이터를 불러오기
   return (
     <BrowserRouter>
       <div className='App'>
