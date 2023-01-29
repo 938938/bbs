@@ -23,7 +23,7 @@ export const getBoardData = async () => {
     .catch((err) => console.log(err));
 };
 
-export const getPostData = async () => {
+export const getPostData = async ({ id }) => {
   await axios
     .get(`${host}/post/${id}`)
     .then((res) => {
