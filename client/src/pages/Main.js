@@ -4,8 +4,8 @@ import Board from '../components/Board';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Main = () => {
-  const [category, setCategory] = useState([]);
+const Main = ({ category }) => {
+  // const [category, setCategory] = useState([]);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -14,14 +14,14 @@ const Main = () => {
    * axios는 따로 설정해서 가급적 보이지 않게 숨기기
    */
 
-  const getCategory = async () => {
-    await axios
-      .get('http://localhost:4000/api/category')
-      .then((res) => {
-        setCategory(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const getCategory = async () => {
+  //   await axios
+  //     .get('http://localhost:4000/api/category')
+  //     .then((res) => {
+  //       setCategory(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const getData = async () => {
     await axios
@@ -34,7 +34,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    getCategory();
+    // getCategory();
     getData();
   }, []);
 
@@ -45,7 +45,7 @@ const Main = () => {
   return (
     <div className='Main'>
       <h2>자유 게시판 - 목록</h2>
-      <Search category={category} />
+      {/* <Search category={category} /> */}
       <Board data={data} />
       <button className='newBtn' onClick={newPost}>
         등록
