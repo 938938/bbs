@@ -3,16 +3,22 @@ import Main from './pages/Main';
 import { Routes, Route } from 'react-router-dom';
 import Post from './pages/Post';
 import Write from './pages/Write';
-import { getCategory } from './api/getCategory';
+import { getCategoryAPI } from './api/getCategory';
 import { useEffect, useState } from 'react';
 
 function App() {
-  // 여기서 카테고리데이터를 불러오기
   const [category, setCategory] = useState([]);
+  const getCategory = async () => {
+    const categoryData = await getCategoryAPI();
+    console.log(categoryData);
+    setCategory(categoryData);
+  };
   useEffect(() => {
-    setCategory(getCategory);
+    getCategory();
   }, []);
+
   console.log(category);
+
   return (
     <div className='App'>
       <Routes>

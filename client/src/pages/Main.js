@@ -34,7 +34,6 @@ const Main = ({ category }) => {
   };
 
   useEffect(() => {
-    // getCategory();
     getData();
   }, []);
 
@@ -45,7 +44,7 @@ const Main = ({ category }) => {
   return (
     <div className='Main'>
       <h2>자유 게시판 - 목록</h2>
-      {/* <Search category={category} /> */}
+      <Search category={category} />
       <Board data={data} />
       <button className='newBtn' onClick={newPost}>
         등록
