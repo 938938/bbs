@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 // import { MdOutlineAttachFile } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-const Board = ({ data }) => {
+const Board = ({ boardData }) => {
   const navigate = useNavigate();
-  
+
   const limit = 10;
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  const numButton = Math.ceil(data.length / limit);
+  const numButton = Math.ceil(boardData.length / limit);
 
   const goPost = (id) => {
     navigate(`/post/${id}`);
@@ -19,7 +19,7 @@ const Board = ({ data }) => {
 
   return (
     <div className='board'>
-      <span className='total'>총 {data.length}건</span>
+      <span className='total'>총 {boardData.length}건</span>
       <table>
         <thead>
           <tr>
@@ -32,7 +32,7 @@ const Board = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.slice(offset, offset + limit).map((ele) => (
+          {boardData.slice(offset, offset + limit).map((ele) => (
             <tr key={ele.id} onClick={() => goPost(ele.id)}>
               <td>{ele.category_name}</td>
               <td>

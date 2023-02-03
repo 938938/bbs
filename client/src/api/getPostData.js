@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { API_URL } from '../global/env';
 
-export const getPostData = async ({ id }) => {
-  await axios
-    .get(`${API_URL}/post/${id}`)
-    .then((res) => {
-      console.log(res.data);
-      setData(res.data[0]);
-    })
-    .catch((err) => console.log(err));
+export const getPostDataAPI = async ({ id }) => {
+  console.log(`${API_URL}/post/${id}`);
+  try {
+    const postData = await axios
+      .get(`${API_URL}/post/${id}`)
+      .then((res) => res.data);
+    return postData;
+  } catch (err) {
+    console.log(err);
+  }
 };

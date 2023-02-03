@@ -61,6 +61,7 @@ app.get('/api/list', (req, res) => {
 
 app.get(`/api/post/:id`, (req, res) => {
   const id = req.params.id;
+  console.log(id);
   const postQuary = `SELECT board.*, category.category_name FROM board INNER JOIN category ON board.category_id = category.id WHERE board.id = ${id}`;
   db.query(postQuary, (err, result) => {
     res.send(result);

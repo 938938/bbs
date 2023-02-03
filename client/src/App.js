@@ -9,15 +9,12 @@ import { useEffect, useState } from 'react';
 function App() {
   const [category, setCategory] = useState([]);
   const getCategory = async () => {
-    const categoryData = await getCategoryAPI();
-    console.log(categoryData);
-    setCategory(categoryData);
+    const data = await getCategoryAPI();
+    setCategory(data);
   };
   useEffect(() => {
     getCategory();
   }, []);
-
-  console.log(category);
 
   return (
     <div className='App'>

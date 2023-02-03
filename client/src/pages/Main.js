@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Search from '../components/Search';
 import Board from '../components/Board';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { getBoardDataAPI } from '../api/getBoardData';
 
 const Main = ({ category }) => {
   // const [category, setCategory] = useState([]);
-  const [data, setData] = useState([]);
+  const [boardData, setBoardData] = useState([]);
   const navigate = useNavigate();
 
   /**
@@ -14,27 +14,13 @@ const Main = ({ category }) => {
    * axios는 따로 설정해서 가급적 보이지 않게 숨기기
    */
 
-  // const getCategory = async () => {
-  //   await axios
-  //     .get('http://localhost:4000/api/category')
-  //     .then((res) => {
-  //       setCategory(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  const getData = async () => {
-    await axios
-      .get('http://localhost:4000/api/list')
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
+  const getBoardData = async () => {
+    const data = await getBoardDataAPI();
+    setBoardData(data);
   };
 
   useEffect(() => {
-    getData();
+    getBoardData();
   }, []);
 
   const newPost = () => {
@@ -45,7 +31,7 @@ const Main = ({ category }) => {
     <div className='Main'>
       <h2>자유 게시판 - 목록</h2>
       <Search category={category} />
-      <Board data={data} />
+      <Board boardData={boardData} />
       <button className='newBtn' onClick={newPost}>
         등록
       </button>

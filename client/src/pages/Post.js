@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AiOutlineDownload } from 'react-icons/ai';
-import axios from 'axios';
+import { getPostDataAPI } from '../api/getPostData';
 
 const Post = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [data, setData] = useState();
+  const [postData, setPostData] = useState();
 
-  const getData = async () => {
-    await axios
-      .get(`http://localhost:4000/api/post/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data[0]);
-      })
-      .catch((err) => console.log(err));
+  const getPostData = async () => {
+    const data = await getPostDataAPI({ id });
+    setPostData(data);
   };
 
   useEffect(() => {
-    getData();
+    getPostData();
   }, []);
 
   const goBack = () => {
@@ -28,39 +23,42 @@ const Post = () => {
 
   const goEdit = () => {
     navigate(`/edit/${id}`, {
-      state: { data: data, type: 'edit' },
+      state: { postData: postData, type: 'edit' },
     });
   };
 
   return (
     <div className='Post'>
       <h2>게시판 - 보기</h2>
-      {data ? (
+      {postData ? (
         <>
           <div className='postHead'>
-            <span>{data.writer}</span>
+            <span>{postData.writer}</span>
             <span className='date'>
-              등록일시 {new Date(data.created).toLocaleDateString()} 수정일시{' '}
-              {data.edit ? new Date(data.edit).toLocaleDateString() : '-'}
+              등록일시 {new Date(postData.created).toLocaleDateString()}{' '}
+              수정일시{' '}
+              {postData.edit
+                ? new Date(postData.edit).toLocaleDateString()
+                : '-'}
             </span>
             <h3>
-              [{data.category_name}] {data.title}
+              [{postData.category_name}] {postData.title}
             </h3>
-            <span className='view'>조회수 : {data.view}</span>
+            <span className='view'>조회수 : {postData.view}</span>
           </div>
-          <div className='text'>{data.contents}</div>
-          {data.file ? (
+          <div className='text'>{postData.contents}</div>
+          {postData.file ? (
             <div className='file'>
-              <AiOutlineDownload /> <span>{data.file}</span>
+              <AiOutlineDownload /> <span>{postData.file}</span>
             </div>
           ) : (
             <></>
           )}
           <div className='commentBox'>
-            {data.comment ? (
+            {postData.comment ? (
               <div className='comment'>
-                <span className='commentDate'>{data.comment_date}</span>
-                <span className='commentText'>{data.comment}</span>
+                <span className='commentDate'>{postData.comment_date}</span>
+                <span className='commentText'>{postData.comment}</span>
               </div>
             ) : (
               <></>
