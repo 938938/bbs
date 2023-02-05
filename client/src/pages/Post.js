@@ -10,7 +10,7 @@ const Post = () => {
 
   const getPostData = async () => {
     const data = await getPostDataAPI({ id });
-    setPostData(data);
+    setPostData(data[0]);
   };
 
   useEffect(() => {
