@@ -5,8 +5,10 @@ import Post from './pages/Post';
 import Write from './pages/Write';
 import { getCategoryAPI } from './api/getCategory';
 import { useEffect, useState } from 'react';
+import Login from './pages/Login';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
   const [category, setCategory] = useState([]);
   const getCategory = async () => {
     const data = await getCategoryAPI();
@@ -19,10 +21,14 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<Main category={category} />} />
-        <Route path='/new' element={<Write category={category} />} />
+        {isLogin ? (
+          <Route path='/' element={<Login />} />
+        ) : (
+          <Route path='/' element={<Main />} />
+        )}
+        {/* <Route path='/new' element={<Write category={category} />} />
         <Route path='/edit/:id' element={<Write />} />
-        <Route path='/post/:id' element={<Post />} />
+        <Route path='/post/:id' element={<Post />} /> */}
       </Routes>
     </div>
   );
