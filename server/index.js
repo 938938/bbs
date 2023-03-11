@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 const path = require('path');
 const port = process.env.port || 4000;
-const cors = require('cors');
 
 const corsOption = {
   origin: 'http://localhost:3000',
@@ -13,7 +14,7 @@ const corsOption = {
 app.use(express.json());
 app.use(cors(corsOption));
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use('/')
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
